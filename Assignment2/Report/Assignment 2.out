@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Taxi Driver Dilemma}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Case 1: N=10}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Case 2: N=20}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Gridworld}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{When to stop?}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Plot of i=max\(|Ji+1-Ji|\) vs the number of iterations}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Goal 1:}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Goal 2:}{subsection.2.2}% 8
+\BOOKMARK [1][-]{section.3}{Goal 1:}{}% 9
+\BOOKMARK [1][-]{section.4}{Goal 2:}{}% 10
+\BOOKMARK [1][-]{section.5}{Plots after 10 iterations}{}% 11
+\BOOKMARK [1][-]{section.6}{Plots after 25 iterations}{}% 12
+\BOOKMARK [1][-]{section.7}{References:}{}% 13

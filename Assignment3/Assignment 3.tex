@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\title{Assignment 1}
+\date{21st August 2018}
+\author{Siddharth Nayak EE16B073}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{legalpaper, portrait, margin=1in}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand \Mycomb[2][^n]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
+
+ \hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+ 
+\urlstyle{same}
+ 
+\begin{document}
+
+\maketitle
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question 1:}
+\subsection{Part A:}
+$\norm {f(x^*)-f(x) } \leq \alpha \norm{x^*-x} \rightarrow \textrm{contraction mapping definition}$\\
+$\norm {(f(x^*)-x)-(f(x)-x) } \leq \alpha \norm{x^*-x} $\\
+$ \big| \norm{f(x^*)-x}-\norm{f(x)-x} \big| \leq \norm {(f(x^*)-x)-(f(x)-x) } \leq \alpha \norm{x^*-x} $\\
+$\therefore -\alpha \norm{x^*-x}  \leq \norm{f(x^*)-x}-\norm{f(x)-x}  \leq  \alpha \norm{x^*-x} $\\
+$\therefore -\alpha \norm{x^*-x}  \leq \norm{x^*-x}-\norm{f(x)-x}  \leq  \alpha \norm{x^*-x} \rightarrow \textrm{since} f(x^*)=x^*$\\
+$\therefore -(\alpha+1) \norm{x^*-x}  \leq -\norm{f(x)-x}  \leq  (\alpha-1) \norm{x^*-x}$\\
+$\therefore (\alpha+1) \norm{x^*-x}  \geq \norm{f(x)-x}  \geq  (1-\alpha) \norm{x^*-x}$\\
+$\therefore \norm{x^*-x} \leq \dfrac{1}{1-\alpha}\norm{f(x)-x}$
+
+\subsection{Part B:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question 2: Energetic Salesman}
+Writing the Bellman Equation for the problem, we get,\\
+$J(A)=\displaystyle\min_{a \in \{\textrm{stay,change}\}}\Big[ r_a+\alpha J(A), -c+\alpha J(B)\Big]$\\
+$J(B)=\displaystyle\min_{a \in \{\textrm{stay,change}\}}\Big[ r_b+\alpha J(B), -c+\alpha J(A)\Big]$\\
+Actions $\rightarrow \{a_1:\textrm{stay},a_2:\textrm{change}\}$
+\subsection{When the discount factor  ${\alpha \to 0}$}
+We will apply policy iteration to get the optimal policy:\\
+Let $\Pi_0(A)=a_2 \textrm{ and } \Pi_0(B)=a_2$\\
+$J_{\pi_0}(A)=$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Question 3:}
+
+\subsection{Part A:}
+$\tilde{p_{ij}}=\dfrac{p_{ij}-m_j}{1-\sum_{k=1}^{n}m_k}$\\
+$\therefore \sum_{j=1}^{n}\tilde{p_{ij}}=\dfrac{\sum_{j=1}^{n}p_{ij}-\sum_{j=1}^{n}m_j}{1-\sum_{k=1}^{n}m_k}$\\
+Since $\displaystyle \sum_{j=1}^{n}p_{ij}=1$\\
+$\therefore \sum_{j=1}^{n}\tilde{p_{ij}}=\dfrac{1-\sum_{j=1}^{n}m_j}{1-\sum_{k=1}^{n}m_k}=1$\\
+
+Therefore $\tilde{p_{ij}}$ are indeed transition probabilities.
+
+\subsection{Part B:}
+Using Bellman's Equation:\\
+$\tilde{J}(i)=\displaystyle \min_{a \in A} \Big[ g(i,a)+\tilde{\alpha} \displaystyle \sum_{j=1}^{n}\tilde{p_{ij}}(a)\tilde{J}(j)\Big] \forall i$\\
+Substituting the values of $\tilde{\alpha} \textrm{ and } \tilde{p_{ij}}(a)$,\\
+$\tilde{J}(i)=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha(1-\sum_{k=1}^{n}m_k) \displaystyle \sum_{j=1}^{n}\dfrac{p_{ij}(a)-m_j}{1-\sum_{k=1}^{n}m_k}\tilde{J}(j)\Big]$\\
+$\tilde{J}(i)=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}({p_{ij}(a)-m_j})\tilde{J}(j)\Big]$\\
+$\tilde{J}(i)=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\tilde{J}(j)-\alpha \displaystyle \sum_{k=1}^{n}m_k\tilde{J}(k)\Big]$\\
+Since the min function is only on actions:a we can write:\\
+$\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\tilde{J}(j)-\alpha \displaystyle \sum_{k=1}^{n}m_k\tilde{J}(k) +\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}\Big]$\\
+$\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\tilde{J}(j)-\alpha \displaystyle \sum_{k=1}^{n}m_k\tilde{J}(k) \big(1-\dfrac{1}{1-\alpha}\big)\Big]$\\
+$\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\tilde{J}(j)+\alpha \dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha} \Big]$\\
+Since $\displaystyle \sum_{j=1}^{n}p_{ij}=1$\\
+$\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\tilde{J}(j)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a) \dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha} \Big]$\\
+$\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e=\displaystyle \min_{a \in A} \Bigg[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)\Big(\tilde{J}(j)+ \dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}\Big) \Bigg]$\\
+Now for the original problem, we have the Bellman equation:\\
+$J^*(i)=\displaystyle \min_{a \in A} \Big[ g(i,a)+\alpha \displaystyle \sum_{j=1}^{n}p_{ij}(a)J^*(j)\Big] \forall i$\\
+Therefore by comparing the above two equations we get:
+$J^*(i)=\tilde{J}(i)+\dfrac{\alpha   \sum_{k=1}^{n}m_k \tilde{J}(k)}{1-\alpha}e $  $ \forall i$\\
+as they satisfy the above equations.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References:}
+Question 1: \\
+Question 2: \\
+Question 3:\\
+Question 4: \\
+
+
+
+
+
+
+
+
+\end{document}
